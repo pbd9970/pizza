@@ -1,11 +1,15 @@
 class Pizza
-  attr_accessor :toppings
+  attr_reader :toppings
   def initialize(toppings= [Topping.new('cheese', vegetarian: true)])
     @toppings = toppings
   end
 
   def vegetarian?
     @toppings.all? { |top| top.vegetarian }
+  end
+
+  def add_topping(topping)
+    @toppings << topping
   end
 end
 

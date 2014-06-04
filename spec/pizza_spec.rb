@@ -1,4 +1,5 @@
 require './pizza'
+require 'pry-debugger'
 
 describe Pizza do
   it "exists" do
@@ -39,6 +40,19 @@ describe Pizza do
       new_pizza = Pizza.new(toppings)
 
       expect(new_pizza.vegetarian?).to be(false)
+    end
+  end
+  describe '.add_topping' do
+    it 'can add a topping' do
+      pizza = Pizza.new()
+
+      expect(pizza.toppings.first.name).to eq('cheese')
+      
+      pizza.add_topping(Topping.new('pepperoni'))
+
+      toppings_reported = pizza.toppings.delete_if {|top| top.name == 'cheese'}
+
+      expect(toppings_reported.first.name).to eq('pepperoni')
     end
   end
 end
