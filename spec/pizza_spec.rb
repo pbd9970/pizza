@@ -65,6 +65,19 @@ describe Pizza do
       expect(pizza.deliver!).to eq(Time.now + 30*60)
     end
   end
+  describe '.late?' do
+    it 'tests whether a delivery is late' do
+      pizza = Pizza.new()
+
+      pizza.deliver!
+
+      expect(pizza.late?).to eq(false)
+
+      Timecop.travel(Time.now + 31*60)
+
+      expect(pizza.late?).to eq(true)
+    end
+  end
 end
 
 describe Topping do
