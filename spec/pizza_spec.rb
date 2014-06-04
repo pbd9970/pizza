@@ -1,5 +1,6 @@
 require './pizza'
 require 'pry-debugger'
+require 'timecop'
 
 describe Pizza do
   it "exists" do
@@ -53,6 +54,15 @@ describe Pizza do
       toppings_reported = pizza.toppings.delete_if {|top| top.name == 'cheese'}
 
       expect(toppings_reported.first.name).to eq('pepperoni')
+    end
+  end
+  describe '.deliver!' do
+    it 'can be scheduled for delivery' do
+      pizza = Pizza.new()
+
+      Timecop.freeze(Time.now)
+
+      expect(pizza.deliver!).to eq(Time.now + 30*60)
     end
   end
 end

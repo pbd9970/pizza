@@ -11,6 +11,10 @@ class Pizza
   def add_topping(topping)
     @toppings << topping
   end
+
+  def deliver!
+    @delivery_time = Time.now + 30*60
+  end
 end
 
 class Topping
