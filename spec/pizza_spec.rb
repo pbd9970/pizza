@@ -14,6 +14,7 @@ describe Pizza do
 
       expect(pizza.toppings).to eq(toppings)
     end
+  end
 end
 
 describe Topping do
